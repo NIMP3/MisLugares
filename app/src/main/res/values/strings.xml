@@ -11,4 +11,15 @@
     <string name="hint_coment">Comentario</string>
     <string name="text_coment">Introduce tus notas</string>
     <string name="text_type">Tipo:</string>
+    <string name="item_menu_settings">Configuración</string>
+    <string name="item_menu_about">Acerca de...</string>
+    <string name="item_menu_search">Buscar</string>
+    <string name="text_name_place">Qhapaq Ñan - Sección Rumichaca - Guapuscal Bajo</string>
+    <string name="text_type_place">Historico</string>
+    <string name="text_date_place">Mar 11, 2017</string>
+    <string name="text_time_place">1:35:40 PM</string>
+    <string name="text_dir_place">Rumichaca - Guapuscal Bajo</string>
+    <string name="text_phone_place">962849300</string>
+    <string name="text_page_place">www.qhapaqnan.co</string>
+    <string name="text_coment_place">Uno de los mejores lugares para visitar en verano.</string>
 </resources>
