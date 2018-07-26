@@ -14,29 +14,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
             app:toolbarId="@+id/toolbar">
 
             <ImageView
-                android:id="@+id/imageViewLugar"
+                android:id="@+id/imageViewPicturePlace"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
-                android:src="@android:drawable/sym_def_app_icon"
-                app:layout_collapseMode="parallax"
-                app:srcCompat="@drawable/place" />
+                android:src="@drawable/place"
+                app:layout_collapseMode="parallax" />
 
             <RatingBar
-                android:id="@+id/ratingBarLugar"
+                android:id="@+id/ratingBarScorePlace"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom"
                 android:layout_marginLeft="8dp"
+                android:layout_marginStart="8dp"
                 android:numStars="5"
                 android:rating="3"
-                android:stepSize="1"
-                android:layout_marginStart="8dp" />
+                android:stepSize="1" />
 
             <android.support.v7.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -55,7 +54,7 @@
         <android.support.constraint.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".view.VistaLugarActivity">
+            tools:context=".view.ViewPlaceActivity">
 
             <TextView
                 android:id="@+id/textViewNamePlace"
@@ -137,7 +136,7 @@
                 android:drawableLeft="@drawable/ic_time" />
 
             <TextView
-                android:id="@+id/textViewDirPlace"
+                android:id="@+id/textViewAddressPlace"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -163,11 +162,11 @@
                 android:textAppearance="@style/ItemTextPlace"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/textViewDirPlace"
+                app:layout_constraintTop_toBottomOf="@+id/textViewAddressPlace"
                 android:drawableLeft="@drawable/ic_phone" />
 
             <TextView
-                android:id="@+id/textViewPagePlace"
+                android:id="@+id/textViewUrlPlace"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
@@ -191,7 +190,7 @@
                 android:background="@color/colorDivider"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toStartOf="@+id/guideline3"
-                app:layout_constraintTop_toBottomOf="@+id/textViewPagePlace" />
+                app:layout_constraintTop_toBottomOf="@+id/textViewUrlPlace" />
 
             <TextView
                 android:id="@+id/textViewComentPlace"
