@@ -1,7 +1,11 @@
 package com.yovanydev.mislugares.view;
 
+import android.content.DialogInterface;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -59,5 +63,47 @@ public class ViewPlaceActivity extends AppCompatActivity {
                 place.setScorePlace(v);
             }
         });
+    }
+
+    /*----------------------------------------------------------------------------------------------
+    Crear un Dialogo simple
+     */
+    public void launchSimpleDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Borrado de Lugar")
+                .setMessage("¿Estas seguro que quieres eliminar este lugar?")
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Places.deletePlace((int) id);
+                    }
+                })
+                .setNegativeButton("CANCELAR", null)
+                .show();
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_view_place, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.item_share:
+                return true;
+            case R.id.item_arrive:
+                return true;
+            case R.id.item_edit:
+                return true;
+            case R.id.item_delete:
+                launchSimpleDialog();
+                finish();
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

@@ -17,17 +17,17 @@ public class Places {
         return vectorPlaces.get(id);
     }
 
-    static void addPlace(Place place) {
+    public static void addPlace(Place place) {
         vectorPlaces.add(place);
     }
 
-    static int newPlace() {
+    public static int newPlace() {
         Place place = new Place();
         vectorPlaces.add(place);
         return vectorPlaces.size()-1;
     }
 
-    static void deletePlace(int id) {
+    public static void deletePlace(int id) {
         vectorPlaces.remove(id);
     }
 

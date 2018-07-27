@@ -22,4 +22,8 @@
     <string name="text_phone_place">962849300</string>
     <string name="text_page_place">www.qhapaqnan.co</string>
     <string name="text_coment_place">Uno de los mejores lugares para visitar en verano.</string>
+    <string name="item_menu_share">Compartir</string>
+    <string name="item_menu_arrive">Cómo llegar</string>
+    <string name="item_menu_edit">Editar</string>
+    <string name="item_menu_delete">Borrar</string>
 </resources>
