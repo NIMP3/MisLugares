@@ -26,4 +26,7 @@
     <string name="item_menu_arrive">Cómo llegar</string>
     <string name="item_menu_edit">Editar</string>
     <string name="item_menu_delete">Borrar</string>
+    <string name="title_edit_place">Editar lugar</string>
+    <string name="item_menu_cancel">CANCELAR</string>
+    <string name="item_menu_save" >GUARDAR</string>
 </resources>

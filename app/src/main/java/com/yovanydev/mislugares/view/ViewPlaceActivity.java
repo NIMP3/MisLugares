@@ -1,9 +1,13 @@
 package com.yovanydev.mislugares.view;
 
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -20,6 +24,17 @@ import java.util.Date;
 
 public class ViewPlaceActivity extends AppCompatActivity {
 
+    TextView textViewNamePlace;
+    TextView textViewAddressPlace;
+    TextView textViewPhonePlace;
+    TextView textViewUrlPlace;
+    TextView textViewComentaryPlace;
+    TextView textViewDatePlace;
+    TextView textViewTimePlace;
+
+    RatingBar ratingBarScorePlace;
+    ImageView imageViewPicturePlace;
+
     private long id;
     private Place place;
 
@@ -32,37 +47,20 @@ public class ViewPlaceActivity extends AppCompatActivity {
         id = extras.getLong("id",-1);
         place = Places.searchPlace((int) id);
 
-        TextView textViewNamePlace = findViewById(R.id.textViewNamePlace);
-        TextView textViewTypePlace = findViewById(R.id.textViewTypePlace);
-        TextView textViewAddressPlace = findViewById(R.id.textViewAddressPlace);
-        TextView textViewPhonePlace = findViewById(R.id.textViewPhonePlace);
-        TextView textViewUrlPlace = findViewById(R.id.textViewUrlPlace);
-        TextView textViewComentaryPlace = findViewById(R.id.textViewComentPlace);
-        TextView textViewDatePlace = findViewById(R.id.textViewDatePlace);
-        TextView textViewTimePlace = findViewById(R.id.textViewTimePlace);
+        showToolbar(place.getTypePlace().getText(),false);
 
-        RatingBar ratingBarScorePlace = findViewById(R.id.ratingBarScorePlace);
-        ImageView imageViewPicturePlace = findViewById(R.id.imageViewPicturePlace);
+        textViewNamePlace = findViewById(R.id.textViewNamePlace);
+        textViewAddressPlace = findViewById(R.id.textViewAddressPlace);
+        textViewPhonePlace = findViewById(R.id.textViewPhonePlace);
+        textViewUrlPlace = findViewById(R.id.textViewUrlPlace);
+        textViewComentaryPlace = findViewById(R.id.textViewComentPlace);
+        textViewDatePlace = findViewById(R.id.textViewDatePlace);
+        textViewTimePlace = findViewById(R.id.textViewTimePlace);
 
-        textViewNamePlace.setText(place.getNamePlace());
-        textViewTypePlace.setText(place.getTypePlace().getText());
-        textViewAddressPlace.setText(place.getAddressPlace());
-        textViewPhonePlace.setText(place.getPhonePlace()+"");
-        textViewUrlPlace.setText(place.getUrlPlace());
-        textViewComentaryPlace.setText(place.getCommentaryPlace());
+        ratingBarScorePlace = findViewById(R.id.ratingBarScorePlace);
+        imageViewPicturePlace = findViewById(R.id.imageViewPicturePlace);
 
-        textViewDatePlace.setText(DateFormat.getDateInstance().format(new Date(place.getDatePlace())));
-        textViewTimePlace.setText(DateFormat.getTimeInstance().format(new Date(place.getDatePlace())));
-
-        ratingBarScorePlace.setRating(place.getScorePlace());
-        Picasso.get().load(place.getPhotoPlace()).into(imageViewPicturePlace);
-
-        ratingBarScorePlace.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            @Override
-            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
-                place.setScorePlace(v);
-            }
-        });
+        updateDateView();
     }
 
     /*----------------------------------------------------------------------------------------------
@@ -83,6 +81,44 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
     }
 
+    /*----------------------------------------------------------------------------------------------
+    Mostrar el toolbar con diferentes caracteristicas
+     */
+    public void showToolbar(String title, Boolean upButton) {
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle(title);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+        getSupportActionBar().setIcon(place.getTypePlace().getResource());
+    }
+
+    /*----------------------------------------------------------------------------------------------
+    Actualizar los datos de la Vista
+     */
+    public void updateDateView() {
+        //getSupportActionBar().setTitle(place.getTypePlace().getText());
+
+        textViewNamePlace.setText(place.getNamePlace());
+        textViewAddressPlace.setText(place.getAddressPlace());
+        textViewPhonePlace.setText(String.valueOf(place.getPhonePlace()));
+        textViewUrlPlace.setText(place.getUrlPlace());
+        textViewComentaryPlace.setText(place.getCommentaryPlace());
+
+        textViewDatePlace.setText(DateFormat.getDateInstance().format(new Date(place.getDatePlace())));
+        textViewTimePlace.setText(DateFormat.getTimeInstance().format(new Date(place.getDatePlace())));
+
+        ratingBarScorePlace.setRating(place.getScorePlace());
+        Picasso.get().load(place.getPhotoPlace()).into(imageViewPicturePlace);
+
+        ratingBarScorePlace.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float v, boolean b) {
+                place.setScorePlace(v);
+            }
+        });
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_view_place, menu);
@@ -97,6 +133,9 @@ public class ViewPlaceActivity extends AppCompatActivity {
             case R.id.item_arrive:
                 return true;
             case R.id.item_edit:
+                Intent intent = new Intent(this, PlaceEditActivity.class);
+                intent.putExtra("id",id);
+                startActivityForResult(intent,1234);
                 return true;
             case R.id.item_delete:
                 launchSimpleDialog();
@@ -105,5 +144,12 @@ public class ViewPlaceActivity extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == 1234) updateDateView();
     }
 }

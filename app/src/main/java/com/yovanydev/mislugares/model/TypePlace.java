@@ -33,4 +33,10 @@ public enum TypePlace {
     public int getResource() {
         return resource;
     }
+
+    public static String[] getNames() {
+        String[] result = new String[TypePlace.values().length];
+        for (TypePlace typePlace : TypePlace.values()) result[typePlace.ordinal()] = typePlace.text;
+        return result;
+    }
 }
