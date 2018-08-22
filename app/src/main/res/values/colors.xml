@@ -11,4 +11,5 @@
 
 
     <color name="colorEditTextBlack">#000000</color>
+    <drawable name="colorBackgroundStampPlace">#AC000000</drawable>
 </resources>

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="edittext_size">18sp</dimen>
+    <dimen name="cardview_height_200">200dp</dimen>
+    <dimen name="cardview_margin_6">6dp</dimen>
+    <dimen name="cardview_corner_radius_5">5dp</dimen>
+    <dimen name="cardview_elevation_2">2dp</dimen>
+    <dimen name="general_padding_8">8dp</dimen>
 </resources>

@@ -7,36 +7,36 @@ import java.util.List;
 
 public class Places {
 
-    protected static List<Place> vectorPlaces = examplePlaces();
+    private static List<Place> places = examplePlaces();
 
     public Places() {
-        vectorPlaces = examplePlaces();
+        places = examplePlaces();
     }
 
     public static Place searchPlace(int id) {
-        return vectorPlaces.get(id);
+        return places.get(id);
     }
 
     public static void addPlace(Place place) {
-        vectorPlaces.add(place);
+        places.add(place);
     }
 
     public static int newPlace() {
         Place place = new Place();
-        vectorPlaces.add(place);
-        return vectorPlaces.size()-1;
+        places.add(place);
+        return places.size()-1;
     }
 
     public static void deletePlace(int id) {
-        vectorPlaces.remove(id);
+        places.remove(id);
     }
 
 
     public static int sizePlaces() {
-        return vectorPlaces.size();
+        return places.size();
     }
 
-    public static ArrayList<Place> examplePlaces() {
+    private static ArrayList<Place> examplePlaces() {
         ArrayList<Place> places = new ArrayList<>();
 
         places.add(new Place(
@@ -84,6 +84,10 @@ public class Places {
                 2,"https://i.imgur.com/5d2HHEE.jpg"
         ));
 
+        return places;
+    }
+
+    public static List<Place> getPlaces() {
         return places;
     }
 }
