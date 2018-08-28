@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import com.yovanydev.mislugares.R;
 import com.yovanydev.mislugares.adapter.PlaceAdapter;
 import com.yovanydev.mislugares.model.Places;
+import com.yovanydev.mislugares.utilities.ToolbarUtility;
 
 public class PlaceListActivity extends AppCompatActivity {
 
@@ -26,5 +27,10 @@ public class PlaceListActivity extends AppCompatActivity {
 
         PlaceAdapter adapter = new PlaceAdapter(Places.getPlaces(), this, R.layout.cardview_place);
         recyclerView.setAdapter(adapter);
+
+        ToolbarUtility.showToolbar(
+                this,
+                getResources().getString(R.string.place_list_activity_title),
+                false);
     }
 }
