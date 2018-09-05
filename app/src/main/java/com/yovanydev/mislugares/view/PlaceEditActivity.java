@@ -15,6 +15,7 @@ import com.yovanydev.mislugares.R;
 import com.yovanydev.mislugares.model.Place;
 import com.yovanydev.mislugares.model.Places;
 import com.yovanydev.mislugares.model.TypePlace;
+import com.yovanydev.mislugares.utilities.ToolbarUtility;
 
 public class PlaceEditActivity extends AppCompatActivity {
 
@@ -39,7 +40,10 @@ public class PlaceEditActivity extends AppCompatActivity {
         id = extras.getLong("id",-1);
         place = Places.searchPlace((int) id);
 
-        showToolbar(getResources().getString(R.string.title_edit_place),false);
+        ToolbarUtility.showToolbar(
+                this,
+                getResources().getString(R.string.title_edit_place),
+                false);
 
         etNamePlace = findViewById(R.id.etPlaceName);
         etAddressPlace = findViewById(R.id.etDir);
@@ -63,16 +67,6 @@ public class PlaceEditActivity extends AppCompatActivity {
 
         spTypePlace.setAdapter(adapter);
         spTypePlace.setSelection(place.getTypePlace().ordinal());
-    }
-
-    /*----------------------------------------------------------------------------------------------
-    Mostrar el toolbar con determinadas caracteristicas
-     */
-    public void showToolbar(String title, Boolean upButton) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
     }
 
     @Override

@@ -215,21 +215,24 @@
         app:fab_labelsPosition="left">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/colorAccent"
-            app:fab_icon="@drawable/ic_about"
+            app:fab_icon="@drawable/ic_camera"
             app:fab_size="mini"
-            app:fab_title="Camara"/>
+            app:fab_title="Camara" />
 
 
         <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fabGallery"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="openGallery"
             app:fab_colorNormal="@color/colorAccent"
-            app:fab_icon="@drawable/ic_search"
+            app:fab_icon="@drawable/ic_gallery"
             app:fab_size="mini"
-            app:fab_title="Galeria"/>
+            app:fab_title="Galeria" />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

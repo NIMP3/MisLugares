@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 
+import com.yovanydev.mislugares.utilities.ToolbarUtility;
 import com.yovanydev.mislugares.view.ViewPlaceActivity;
 
 public class FormActivity extends AppCompatActivity {
@@ -19,18 +20,7 @@ public class FormActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_form);
-
-        showToolbar(getResources().getString(R.string.app_name), true);
-    }
-
-    /*----------------------------------------------------------------------------------------------
-    Modificar las propiedades del Toolbar
-     */
-    public void showToolbar(String title, Boolean upButton) {
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(title);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(upButton);
+        ToolbarUtility.showToolbar(this,getResources().getString(R.string.app_name),false);
     }
 
     /*----------------------------------------------------------------------------------------------

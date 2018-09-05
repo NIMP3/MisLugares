@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 import com.yovanydev.mislugares.R;
 import com.yovanydev.mislugares.model.Place;
@@ -37,6 +38,13 @@ public class ViewPlaceActivity extends AppCompatActivity {
 
     RatingBar ratingBarScorePlace;
     ImageView imageViewPicturePlace;
+
+    FloatingActionButton fabCamera;
+    FloatingActionButton fabGallery;
+
+    final static int EDIT_RESULT = 1;
+    final static int GALLERY_RESULT = 2;
+    final static int PHOTO_RESULT = 3;
 
     private long id;
     private Place place;
@@ -130,6 +138,17 @@ public class ViewPlaceActivity extends AppCompatActivity {
     }
 
     /*----------------------------------------------------------------------------------------------
+    * Abre la galeria de fotos para elegir una imágen
+    *
+    * @param <code>View view</code> : Vista que invoca el metodo*/
+    public void openGallery(View view) {
+        Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+        intent.setType("image/*");
+        startActivityForResult(intent,GALLERY_RESULT);
+    }
+
+    /*----------------------------------------------------------------------------------------------
     Actualizar los datos de la Vista
      */
     public void updateDateView() {
@@ -155,6 +174,16 @@ public class ViewPlaceActivity extends AppCompatActivity {
         });
     }
 
+    /*----------------------------------------------------------------------------------------------
+    * Poner la nueva fotografia en Pantalla
+    *
+    * @param <code>ImageView imageView</code> : Vista para la fotografia
+    * @param <code>String uri</code> : Ruta de la fotografia*/
+    protected void putPhoto(ImageView imageView, String uri) {
+        if (uri != null) Picasso.get().load(uri).into(imageView);
+        else Picasso.get().load(R.drawable.place).into(imageView);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_view_place, menu);
@@ -173,7 +202,7 @@ public class ViewPlaceActivity extends AppCompatActivity {
             case R.id.item_edit:
                 Intent intent = new Intent(this, PlaceEditActivity.class);
                 intent.putExtra("id",id);
-                startActivityForResult(intent,1234);
+                startActivityForResult(intent,EDIT_RESULT);
                 return true;
             case R.id.item_delete:
                 launchSimpleDialog();
@@ -187,7 +216,10 @@ public class ViewPlaceActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == 1234) updateDateView();
+        if (requestCode == EDIT_RESULT) updateDateView();
+        else if (requestCode == GALLERY_RESULT && resultCode == RESULT_OK) {
+            place.setPhotoPlace(data.getDataString());
+            putPhoto(imageViewPicturePlace, place.getPhotoPlace());
+        }
     }
 }
