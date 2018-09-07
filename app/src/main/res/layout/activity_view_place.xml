@@ -218,6 +218,7 @@
             android:id="@+id/fabCamera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:onClick="takePhoto"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_icon="@drawable/ic_camera"
             app:fab_size="mini"
